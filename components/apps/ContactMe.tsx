@@ -1,10 +1,9 @@
 "use client";
 
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect } from "react";
 import emailjs from '@emailjs/browser';
 
 export default function ContactMe() {
-  const formRef = useRef<HTMLFormElement>(null);
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -98,15 +97,16 @@ export default function ContactMe() {
         });
       }, 3000);
 
-    } catch (err: any) {
+    } catch (err) {
       console.error('❌ Email send error:', err);
+      const error = err as { message?: string; text?: string; status?: number };
       console.error('Error details:', {
-        message: err?.message,
-        text: err?.text,
-        status: err?.status,
+        message: error?.message,
+        text: error?.text,
+        status: error?.status,
       });
-      alert(`❌ Error: ${err?.text || err?.message || 'Unknown error'}`);
-      setError(`Failed to send: ${err?.text || err?.message || 'Unknown error'}`);
+      alert(`❌ Error: ${error?.text || error?.message || 'Unknown error'}`);
+      setError(`Failed to send: ${error?.text || error?.message || 'Unknown error'}`);
       setSending(false);
       setTimeout(() => setError(null), 5000);
     }

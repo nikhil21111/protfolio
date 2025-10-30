@@ -5,7 +5,7 @@ import Image from "next/image";
 import Taskbar from "./Taskbar";
 import Window from "./Window";
 import DesktopIcon from "./DesktopIcon";
-import { AppData, apps } from "@/lib/apps";
+import { apps } from "@/lib/apps";
 
 interface DesktopProps {
   userName: string;
