@@ -1,0 +1,311 @@
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --win95-gray: #c0c0c0;
+  --win95-dark-gray: #808080;
+  --win95-light-gray: #dfdfdf;
+  --win95-blue: #000080;
+  --win95-desktop: #008080;
+}
+
+* {
+  image-rendering: pixelated;
+  image-rendering: -moz-crisp-edges;
+  image-rendering: crisp-edges;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  font-family: 'MS Sans Serif', Arial, sans-serif;
+  cursor: none;
+}
+
+/* Custom Animated Cursor */
+.custom-cursor {
+  position: fixed;
+  width: 32px;
+  height: 32px;
+  pointer-events: none;
+  z-index: 99999;
+  mix-blend-mode: difference;
+}
+
+.cursor-dot {
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  background: white;
+  border-radius: 50%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  transition: width 0.2s, height 0.2s;
+}
+
+.cursor-outline {
+  position: absolute;
+  width: 32px;
+  height: 32px;
+  border: 2px solid white;
+  border-radius: 50%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  animation: cursorPulse 2s ease-in-out infinite;
+}
+
+.cursor-trail {
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  background: rgba(255, 255, 255, 0.5);
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+@keyframes cursorPulse {
+  0%, 100% {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: translate(-50%, -50%) scale(1.2);
+    opacity: 0.8;
+  }
+}
+
+/* Cursor hover effects */
+.custom-cursor.hovering .cursor-dot {
+  width: 16px;
+  height: 16px;
+  background: cyan;
+}
+
+.custom-cursor.hovering .cursor-outline {
+  border-color: cyan;
+  animation: cursorPulse 0.5s ease-in-out infinite;
+}
+
+.custom-cursor.clicking .cursor-dot {
+  width: 12px;
+  height: 12px;
+  background: yellow;
+}
+
+.custom-cursor.clicking .cursor-outline {
+  border-color: yellow;
+  transform: translate(-50%, -50%) scale(0.8);
+}
+
+@layer utilities {
+  .win95-border {
+    border-style: solid;
+    border-width: 2px;
+    border-top-color: #dfdfdf;
+    border-left-color: #dfdfdf;
+    border-right-color: #0a0a0a;
+    border-bottom-color: #0a0a0a;
+  }
+
+  .win95-border-inset {
+    border-style: solid;
+    border-width: 2px;
+    border-top-color: #0a0a0a;
+    border-left-color: #0a0a0a;
+    border-right-color: #dfdfdf;
+    border-bottom-color: #dfdfdf;
+  }
+
+  .win95-button {
+    @apply win95-border bg-win95-gray px-4 py-2 text-black active:win95-border-inset;
+  }
+
+  .pixel-font {
+    font-family: 'Press Start 2P', cursive;
+  }
+}
+
+.scanlines {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  background: linear-gradient(
+    to bottom,
+    rgba(255, 255, 255, 0) 50%,
+    rgba(0, 0, 0, 0.05) 50%
+  );
+  background-size: 100% 4px;
+  z-index: 9999;
+}
+
+.crt-effect {
+  animation: flicker 0.15s infinite;
+}
+
+@keyframes flicker {
+  0% {
+    opacity: 0.97;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0.97;
+  }
+}
+
+/* Butterfly Animations */
+@keyframes butterfly-flutter {
+  0%, 100% {
+    transform: translateY(0) translateX(0) rotate(0deg);
+  }
+  25% {
+    transform: translateY(-20px) translateX(10px) rotate(5deg);
+  }
+  50% {
+    transform: translateY(-10px) translateX(-5px) rotate(-3deg);
+  }
+  75% {
+    transform: translateY(-25px) translateX(8px) rotate(4deg);
+  }
+}
+
+@keyframes butterfly-float {
+  0%, 100% {
+    transform: translateY(0) translateX(0) scale(1);
+  }
+  33% {
+    transform: translateY(-30px) translateX(20px) scale(1.1);
+  }
+  66% {
+    transform: translateY(-15px) translateX(-15px) scale(0.9);
+  }
+}
+
+@keyframes butterfly-zigzag {
+  0% {
+    transform: translateX(0) translateY(0) rotate(0deg);
+  }
+  25% {
+    transform: translateX(-30px) translateY(-20px) rotate(-10deg);
+  }
+  50% {
+    transform: translateX(30px) translateY(-40px) rotate(10deg);
+  }
+  75% {
+    transform: translateX(-20px) translateY(-30px) rotate(-8deg);
+  }
+  100% {
+    transform: translateX(0) translateY(0) rotate(0deg);
+  }
+}
+
+.animate-butterfly-flutter {
+  animation: butterfly-flutter 3s ease-in-out infinite;
+}
+
+.animate-butterfly-float {
+  animation: butterfly-float 4s ease-in-out infinite;
+}
+
+.animate-butterfly-zigzag {
+  animation: butterfly-zigzag 5s ease-in-out infinite;
+}
+
+/* Holographic Effect */
+@keyframes holographic {
+  0%, 100% {
+    background-position: 0% 50%;
+    filter: hue-rotate(0deg);
+  }
+  50% {
+    background-position: 100% 50%;
+    filter: hue-rotate(180deg);
+  }
+}
+
+/* Neon Glow Pulse */
+@keyframes neon-pulse {
+  0%, 100% {
+    text-shadow: 
+      0 0 10px rgba(0, 255, 255, 0.8),
+      0 0 20px rgba(0, 255, 255, 0.6),
+      0 0 30px rgba(0, 255, 255, 0.4),
+      0 0 40px rgba(0, 255, 255, 0.2);
+  }
+  50% {
+    text-shadow: 
+      0 0 20px rgba(255, 0, 255, 1),
+      0 0 30px rgba(255, 0, 255, 0.8),
+      0 0 40px rgba(255, 0, 255, 0.6),
+      0 0 50px rgba(255, 0, 255, 0.4);
+  }
+}
+
+/* 3D Rotate */
+@keyframes rotate-3d {
+  0% {
+    transform: perspective(1000px) rotateY(0deg) rotateX(0deg);
+  }
+  100% {
+    transform: perspective(1000px) rotateY(360deg) rotateX(360deg);
+  }
+}
+
+/* RGB Split Glitch */
+@keyframes rgb-split {
+  0%, 100% {
+    text-shadow: 
+      -2px -2px 0 rgba(255, 0, 0, 0.5),
+      2px 2px 0 rgba(0, 255, 255, 0.5);
+  }
+  50% {
+    text-shadow: 
+      2px -2px 0 rgba(255, 0, 0, 0.5),
+      -2px 2px 0 rgba(0, 255, 255, 0.5);
+  }
+}
+
+/* Wave Animation */
+@keyframes wave {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+}
+
+/* Particle Float */
+@keyframes particle-float {
+  0% {
+    transform: translate(0, 0) scale(1);
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    transform: translate(var(--tx), var(--ty)) scale(0);
+    opacity: 0;
+  }
+}
+
+/* Cyber Scan */
+@keyframes cyber-scan {
+  0% {
+    background-position: 0% 0%;
+  }
+  100% {
+    background-position: 100% 100%;
+  }
+}
