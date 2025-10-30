@@ -1,4 +1,4 @@
-# Lovable Retro Portfolio
+# Nikhil Retro Portfolio
 
 A next-level retro computer portfolio website inspired by Windows 95/98, built with Next.js, React, TypeScript, and Tailwind CSS.
 
@@ -144,19 +144,4 @@ Try these secret codes in EasterEgg.exe:
 
 This project is open source and available under the MIT License.
 
-## 👨‍💻 Author
 
-**Lovable**
-- Portfolio: [Your URL]
-- GitHub: [@lovable](https://github.com/lovable)
-- LinkedIn: [lovable](https://linkedin.com/in/lovable)
-
-## 🙏 Acknowledgments
-
-- Inspired by [jensheryl.vercel.app](https://jensheryl.vercel.app/)
-- Windows 95/98 UI design
-- Retro computing aesthetics
-
----
-
-Made with ❤️ and lots of ☕ by Lovable
